@@ -10,6 +10,9 @@ formularioCalculadora.addEventListener('submit',(evento) => {
 function calcularCalorias() {
     aparecerResultado();
 
+    const nombre = document.querySelector('#nombre')
+    const tipo_documento = document.querySelector('#tipo-documento')
+    const documento = document.querySelector('#documento')
     const edad = document.querySelector('#edad')
     const peso = document.querySelector('#peso')
     const altura = document.querySelector('#altura')

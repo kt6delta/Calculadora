@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="es">
 
@@ -6,15 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS. -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
   <!-- Estilos. -->
   <link rel="stylesheet" href="main.css">
 
   <!-- Scripts. -->
   <script src="main.js" defer></script>
-
+  
   <title>Calculadora de calorías</title>
 </head>
 
@@ -46,7 +46,7 @@
       </div>
     </div>
   </header>
-
+    
   <main class="main-content">
     <section class="container">
       <div class="row py-4">
@@ -55,20 +55,42 @@
             <fieldset>
 
               <legend class="h2 text-center">Calculadora de Calorías</legend>
+              
+              <div class="mb-3">
+                <label for="nombre" class="form-label h6">Nombre</label>
+                <input type="text" id="nombre" class="form-control" placeholder="Digite su nombre">
+              </div>
+
+              <div class="mb-3">
+                <label for="tipo-documento" class="form-label h6">Tipo de documento de identidad</label>
+                <select id="tipo-documento" class="form-select">
+                  <option></option>
+                  <option value="CC">Cédula de ciudadanía</option>
+                  <option value="CE">Cédula de extranjería</option>
+                  <option value="PP">Pasaporte</option>
+                  <option value="TI">Tarjeta de identidad</option>
+                  <option value="PEP">Permiso especial de permanencia</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="documento" class="form-label h6">Documento de identidad</label>
+                <input type="text" id="documento" class="form-control" placeholder="Digite su documento de identidad">
+              </div>
 
               <div class="mb-3">
                 <label for="edad" class="form-label h6">Edad</label>
-                <input type="number" id="edad" class="form-control" min="15" max="80" placeholder="Digíte su edad">
+                <input type="number" id="edad" class="form-control" min="15" max="80" placeholder="Digite su edad">
               </div>
 
               <div class="mb-3">
                 <label for="peso" class="form-label h6">Peso</label>
-                <input type="number" id="peso" class="form-control" placeholder="Digíte su peso en kilogramos">
+                <input type="number" id="peso" class="form-control" placeholder="Digite su peso en kilogramos">
               </div>
 
               <div class="mb-3">
                 <label for="altura" class="form-label h6">Altura</label>
-                <input type="number" id="altura" class="form-control" placeholder="Digíte su altura en centímetros">
+                <input type="number" id="altura" class="form-control" placeholder="Digite su altura en centímetros">
               </div>
 
               <div class="mb-3">
@@ -82,21 +104,23 @@
                   <option value="1.9">Ejercicio muy fuerte (dos veces al día, entrenamientos muy duros)</option>
                 </select>
               </div>
-
-              <section class="row m-2 h-100">
-                <span class="h6 p-0">Sexo</span>
-                <div class="form-check">
-                  <input class="form-check-input" value="F" type="radio" name="genero" id="femenino" checked>
-                  <label class="form-check-label" for="femenino">
-                    Femenino
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" value="M" type="radio" name="genero" id="masculino">
-                  <label class="form-check-label" for="masculino">
-                    Masculino
-                  </label>
-                </div>
+              
+              <section class="row mb-3 h-100">
+                <div class="d-flex flex-row align-items-center">
+                  <span class="h6 m-0">Sexo</span>
+                  <div class="form-check">
+                    <input class="form-check-input m-1" value="F" type="radio" name="genero" id="femenino" checked>
+                    <label class="form-check-label" for="femenino">
+                      Femenino
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input m-1" value="M" type="radio" name="genero" id="masculino">
+                    <label class="form-check-label" for="masculino">
+                      Masculino
+                    </label>
+                  </div>
+              </div>
               </section>
 
               <hr>
@@ -113,34 +137,38 @@
     </section>
   </main>
 
-  <footer class="footer row p-3">
-    <div class="col d-flex justify-content-right align-items-center">
-      <ul>
-        <li>✖️ <a href="#">Instagram</a></li>
-        <li>✖️ <a href="#">Facebook</a></li>
-        <li>✖️ <a href="#">Telegram</a></li>
-      </ul>
+  <footer class="footer row p-2 align-items-center justify-content-center">
+
+    <div class="col flex-row align-items-center">
+      <div class>
+        <img src="./img/instagram.webp" style="height: 3vh">
+        <a href="#">Instagram</a>
+      </div>
+      <div>
+        <img src="./img/facebook.png" style="height: 3vh">
+        <a href="#">Facebook</a>
+      </div>
+      <div>
+        <img src="./img/youtube.webp" style="height: 3vh">
+        <a href="#">YouTube</a>
+      </div>
     </div>
 
-    <div class="col d-flex justify-content-right align-items-center">
+    <div class="col">
       <ul>
         <li><a href="#">Servicios</a></li>
         <li><a href="#">Guías</a></li>
-        <li><a href="#">Acesorías</a></li>
+        <li><a href="#">Asesorías</a></li>
       </ul>
     </div>
-
-    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
-      <p class="m-0"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero optio voluptate qui adipisci,
-          hic voluptatibus totam dolorem cumque repellendus amet! Repudiandae, ab error unde porro sint fugit qui
-          temporibus, consequatur dolores sit quas perspiciatis omnis magnam iure ut, quod dignissimos molestias
-          voluptas architecto nam! Accusantium corporis sit eos dolorum accusamus.</span></p>
+    
+    <div class="col flex-row">
+      <p><em>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero optio voluptate qui adipisci, hic voluptatibus totam dolorem cumque repellendus amet! Repudiandae, ab error unde porro sint fugit qui temporibus, consequatur dolores sit quas perspiciatis omnis magnam iure ut, quod dignissimos molestias voluptas architecto nam! Accusantium corporis sit eos dolorum accusamus.</em></p>
     </div>
+
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->
   <!--
