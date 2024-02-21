@@ -19,7 +19,7 @@ function calcularCalorias() {
     const actividad = document.querySelector('#actividad')
     const genero = document.querySelector('input[name="genero"]:checked')
 
-    // Proceso de retorno temprano.
+    // Proceso de Retorno temprano.
     // Primero: lista con los elementos a verificar.
     let campos = [edad,peso,altura,actividad,genero]
     // Luego: llamar a la función que hace las verificaciones.
