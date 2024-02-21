@@ -3,64 +3,61 @@ const formularioCalculadora = document.getElementById('formulario-calculadora')
 const resultado = document.getElementById('resultado')
 
 formularioCalculadora.addEventListener('submit',(evento) => {
-    evento.preventDefault(); // evento corresponde a submit.
+    evento.preventDefault();
     calcularCalorias()
 } )
 
 function calcularCalorias() {
     aparecerResultado();
 
-        const edad = document.querySelector('#edad')
-        const peso = document.querySelector('#peso')
-        const altura = document.querySelector('#altura')
-        const actividad = document.querySelector('#actividad')
-        const genero = document.querySelector('input[name="genero"]:checked')
+    const edad = document.querySelector('#edad')
+    const peso = document.querySelector('#peso')
+    const altura = document.querySelector('#altura')
+    const actividad = document.querySelector('#actividad')
+    const genero = document.querySelector('input[name="genero"]:checked')
 
-        // Retorno temprano.
-        // La idea es que todo este proceso de Retorno temprano, sea una función que retorne true o false.
-        if (!(edad.value && peso.value && altura.value && actividad.value)){
-            mostrarMensajeDeError('Por favor diligencie todos los campos')
-            return
-        }
-       
-        const multiplicadorTMB = {
-            peso: 10,
-            altura: 6.25,
-            edad: 5
-        }
-        
-        // INICIA MANERA COMO LO HIZO EL PROFE.
-        // let calculoCalorias;
-        // // Condicional para calcular la fórmula dependiendo de si el género es femenino o masculino.
-        // // Nota: Se puede hacer con un operador ternario o una función.
-        // if (genero.id=='femenino') {
-        //     // Fórmula mujeres: valor actividad x ( (10 x peso en kg) + (6,25 × altura en cm) - (5 × edad en años) - 161 )
-        //     calculoCalorias = actividad.value * ( (multiplicadorTMB.peso * peso.value) + 
-        //     (multiplicadorTMB.altura * altura.value) - 
-        //     (multiplicadorTMB.edad * edad.value) - 161 )
-        // } else {
-        //     // Fórmula hombres: valor actividad x ( (10 x peso en kg) + (6,25 × altura en cm) - (5 × edad en años) + 5 )
-        //     calculoCalorias = actividad.value * ( (multiplicadorTMB.peso * peso.value) + 
-        //     (multiplicadorTMB.altura * altura.value) - 
-        //     (multiplicadorTMB.edad * edad.value) + 5 )
-        // }        
-        // FINALIZA MANERA COMO LO HIZO EL PROFE.
+    // Proceso de retorno temprano.
+    // Primero: lista con los elementos a verificar.
+    let campos = [edad,peso,altura,actividad,genero]
+    // Luego: llamar a la función que hace las verificaciones.
+    if (retornoTemprano(campos)) {
+        mostrarMensajeDeError('Por favor diligencie todos los campos')
+        return // Al poner este return, se devuelve el mensaje y no se sigue ejecutando el código.
+    }
 
-        // INICIA MANERA CON OPERADOR TERNARIO.
-        let calculoCalorias;
-        calculoCalorias = actividad.value * ( (multiplicadorTMB.peso * peso.value) + (multiplicadorTMB.altura * altura.value) - (multiplicadorTMB.edad * edad.value) + (genero.id=='femenino' ? -161 : 5) )
-        // FINALIZA MANERA CON OPERADOR TERNARIO.
+    // Proceso de calcular calorías.
+    // Primero: se crea un JSON con constantes que se necesitan para el cálculo.
+    const multiplicadorTMB = {
+        peso: 10,
+        altura: 6.25,
+        edad: 5
+    }
+    // Segundo: se declara la variable para el cálculo de calorías.
+    let calculoCalorias;
+    // Tercero: condicional para calcular calorías dependiendo del género, aplicando operador ternario.
+    calculoCalorias = actividad.value * ( (multiplicadorTMB.peso * peso.value) + (multiplicadorTMB.altura * altura.value) - (multiplicadorTMB.edad * edad.value) + (genero.id=='femenino' ? -161 : 5) )
 
-        console.log(calculoCalorias)
-        resultado.innerHTML=`
-            <div class="card-body d-flex flex-column justify-content-center align-items-center h-100" id="calculo">
-                <h5 class="card-title h2">Calorías requeridas</h5>
-                <div class="mb-3 w-100">
-                    <input class="form-control text-center" value="${Math.floor(calculoCalorias)} kcal" style="font-size: 2rem" disabled>
-                </div>
+    // Proceso de mostrasr resultado.
+    resultado.innerHTML=`
+        <div class="card-body d-flex flex-column justify-content-center align-items-center h-100" id="calculo">
+            <h5 class="card-title h2">Calorías requeridas</h5>
+            <div class="mb-3 w-100">
+                <input class="form-control text-center" value="${Math.floor(calculoCalorias)} kcal" style="font-size: 2rem" disabled>
             </div>
-        `
+        </div>
+    `
 
+}
+
+function retornoTemprano(lista_campos) {
+    retTem=false
+    for (let campo of lista_campos) {
+        if (!(campo.value)) {
+            retTem=true
+            break
+        }
+    }
+    return retTem
 }
 
 function mostrarMensajeDeError(msg) {
