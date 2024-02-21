@@ -47,6 +47,7 @@ function calcularCalorias() {
             <div class="mb-3 w-100">
                 <input class="form-control text-center" value="${Math.floor(calculoCalorias)} kcal" style="font-size: 2rem" disabled>
             </div>
+            <p>El paciente ${nombre.value} identificado con ${tipo_documento.value} No. ${documento.value}, requiere un total de ${Math.floor(calculoCalorias)} kcal para el sostenimiento de su TBM.</p>
         </div>
     `
 
