@@ -2,10 +2,10 @@
 const formularioCalculadora = document.getElementById('formulario-calculadora')
 const resultado = document.getElementById('resultado')
 
-formularioCalculadora.addEventListener('submit',(evento) => {
+formularioCalculadora.addEventListener('submit', (evento) => {
     evento.preventDefault();
     calcularCalorias()
-} )
+})
 
 function calcularCalorias() {
     aparecerResultado();
@@ -21,7 +21,7 @@ function calcularCalorias() {
 
     // Proceso de Retorno temprano.
     // Primero: lista con los elementos a verificar.
-    let campos = [edad,peso,altura,actividad,genero]
+    let campos = [edad, peso, altura, actividad, genero]
     // Luego: llamar a la función que hace las verificaciones.
     if (retornoTemprano(campos)) {
         mostrarMensajeDeError('Por favor diligencie todos los campos')
@@ -38,26 +38,27 @@ function calcularCalorias() {
     // Segundo: se declara la variable para el cálculo de calorías.
     let calculoCalorias;
     // Tercero: condicional para calcular calorías dependiendo del género, aplicando operador ternario.
-    calculoCalorias = actividad.value * ( (multiplicadorTMB.peso * peso.value) + (multiplicadorTMB.altura * altura.value) - (multiplicadorTMB.edad * edad.value) + (genero.id=='femenino' ? -161 : 5) )
+    calculoCalorias = actividad.value * ((multiplicadorTMB.peso * peso.value) + (multiplicadorTMB.altura * altura.value) - (multiplicadorTMB.edad * edad.value) + (genero.id == 'femenino' ? -161 : 5))
 
     // Proceso de mostrasr resultado.
-    resultado.innerHTML=`
+    resultado.innerHTML = `
         <div class="card-body d-flex flex-column justify-content-center align-items-center h-100" id="calculo">
-            <h5 class="card-title h2">Calorías requeridas</h5>
+        <h4 class="h2">${nombre.value} es ${GrupoEdad()} </h4>    
+        <h5 class="card-title h2">Y requiere </h5>
             <div class="mb-3 w-100">
                 <input class="form-control text-center" value="${Math.floor(calculoCalorias)} kcal" style="font-size: 2rem" disabled>
             </div>
-            <p>El paciente ${nombre.value} identificado con ${tipo_documento.value} No. ${documento.value}, requiere un total de ${Math.floor(calculoCalorias)} kcal para el sostenimiento de su TBM.</p>
+            <p class="h4">El paciente <b> ${nombre.value} </b> identificado con <b> ${tipo_documento.value} </b> No. <b> ${documento.value}</b>, requiere un total de <b> ${Math.floor(calculoCalorias)} </b> kcal para el sostenimiento de su TBM.</p>
         </div>
     `
 
 }
 
 function retornoTemprano(lista_campos) {
-    retTem=false
+    retTem = false
     for (let campo of lista_campos) {
         if (!(campo.value)) {
-            retTem=true
+            retTem = true
             break
         }
     }
@@ -109,4 +110,17 @@ function desvanecerResultado() {
             resultado.style.top = 0;
         }
     }, 10)
+}
+
+function GrupoEdad() {
+    var edad = document.getElementById('edad').value;
+    if (edad <= 15 && edad <= 29) {
+        return "Joven";
+    } else if (edad <= 30 && edad <= 59) {
+        return 'Adulto';
+    } else if(edad <= 60){
+        return 'Adulto mayor';
+    }else{
+        return 'niño';
+    }
 }
